@@ -1,15 +1,13 @@
 <template>
   <div id="app">
-    <div id="box1" class="box">
-      <draggable tag="ul" :options="{group:'ITEMS'}">
-        <li v-for="item, index in items" :key="item.no">{{item.name}}-(No.{{item.no}})</li>
+    <ul id="app">
+      <button v-on:click="doAdd">追加</button>
+      <draggable>
+        <li v-for="item, index in myList" :key="item.no">{{item.name}}-(No.{{item.no}})
+          <span class="del" v-on:click="doDelete(index)">[削除]</span>
+        </li>
       </draggable>
-    </div>
-    <div id="box2" class="box">
-      <draggable tag="ul" :options="{group:'ITEMS'}">
-        <li v-for="item, index in items2" :key="item.no">{{item.name}}-(No.{{item.no}})</li>
-      </draggable>
-    </div>
+    </ul>
   </div>
 </template>
 
@@ -23,15 +21,40 @@ export default {
   },
   data: function () {
     return {
-      items:[
-        {no:1, name:'キャベツ', categoryNo:'1'},
-        {no:2, name:'ステーキ', categoryNo:'2'}
-      ],
-      items2:[
-        {no:5, name:'きゅうり', categoryNo:'1'},
-        {no:6, name:'ハンバーグ', categoryNo:'2'}
-      ]
+        items:[
+          {no:1, name:'キャベツ', categoryNo:'1'},
+          {no:2, name:'ステーキ', categoryNo:'2'},
+          {no:3, name:'リンゴ', categoryNo:'3'}
+        ],
+        newNo: 4
     }
+  },
+  computed: {
+    myList: function(){
+      return this.items;
+    }
+  },
+  methods: {
+    doAdd:function(){
+      var self = this;
+      var no = 0;
+          　
+      if(self.items.concat().length > 0){
+        no =  Math.max.apply(null,self.items.concat().map(function(item){return item.no;})) +1;
+        self.newNo = self.newNo < no ? no:self.newNo;
+      }
+
+      this.items.push(
+        {
+          no:　this.newNo,
+          name:'追加リスト'+ this.newNo,
+          categoryNo:'5'
+        }
+      );
+    },
+    doDelete: function(index){
+      this.items.splice(index, 1);
+    },
   }
 }
 </script>
@@ -41,22 +64,13 @@ export default {
   padding : 15px;
 }
 
-.box {
-  width: 50%;
-  float: left;
-  padding: 20px 0;
-}
-#box1 {
-  background-color: #fdd;
-}
-#box2 {
-  background-color: #ddf;
-}
-
 li {
   cursor:pointer;
   padding: 10px;
   border: solid #ddd 1px;
-  background-color: #fff;
+}
+
+.del {
+  color: #f00;
 }
 </style>
