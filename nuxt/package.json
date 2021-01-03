@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "element-ui": "^2.13.2",
-    "nuxt": "^2.14.0"
+    "nuxt": "^2.14.0",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {}
 }
