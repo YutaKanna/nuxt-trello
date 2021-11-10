@@ -29,7 +29,8 @@ export default {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    '@/assets/main.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -47,6 +48,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/color-mode'
   ],
   /*
   ** Nuxt.js modules
