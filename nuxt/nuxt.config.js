@@ -1,3 +1,4 @@
+import i18n from './config/i18n'
 
 export default {
   /*
@@ -48,7 +49,25 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    [
+      '@nuxtjs/i18n',
+      {
+        vueI18nLoader: true,
+        defaultLocale: 'en',
+         locales: [
+          {
+             code: 'en',
+             name: 'English'
+          },
+          {
+             code: 'fr',
+             name: 'Français'
+          }
+        ],
+        vueI18n: i18n
+      }
+    ]
   ],
   /*
   ** Nuxt.js modules

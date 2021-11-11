@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "^7.2.0",
     "element-ui": "^2.13.2",
     "nuxt": "^2.14.0",
     "vuedraggable": "^2.24.3"
